@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="./javascript.js" defer></script>
+    <title>Book Library</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="center"><img width="100px" src="./images/bookshelf.svg" alt="Bookshelf Icon">My Book Library</h1>            
+        </div>
+        <div class="main">
+            <dialog id="bookDialog">
+                <form id="addNewBook">
+                    <h2>Add New Book</h2>
+                    <div class="form-rows">
+                        <label for="book-title">Title</label>
+                        <input id="book-title" type="text" minlength="1" required></input>
+                        <label for="book-author">Author</label>
+                        <input id="book-author" type="text" minlength="1" required></input>
+                        <label for="book-pages">Pages</label>
+                        <input id="book-pages" type="number" min="1" max="11000"></input>
+                        <p>Status</p>
+                        <div class="book-status">
+                            <input type="radio" id="status-read" name="book-status" value="status-read" checked>
+                            <label for="status-read">Read</label>
+                            <input type="radio" id="status-in-progress" name="book-status" value="status-in-progress">
+                            <label for="status-in-progress">In Progress</label>
+                            <input type="radio" id="status-unread" name="book-status" value="status-unread">
+                            <label for="status-unread">Not Yet Started</label>
+                        </div>
+                    </div>
+
+                   
+                    <button type="submit" id="submit-btn">Submit</button>
+                    <button id="cancel-btn" type="button">Close</button>
+                </form>
+            </dialog>
+            <div class="center"><button id="new-book-btn"><img width="24px" src="./images/book-plus.svg" alt="Add new book icon">Add New Book</button></div>
+            <div class="database">
+                <div class="col-title">Title</div>
+                <div class="col-title">Author</div>
+                <div class="col-title">Pages</div>
+                <div class="col-title">Status</div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Made by Jeremy Turner  <a target=”_blank” href="http://www.github.com/turner-jeremy/book-library"><img width="24px" src="./images/github-mark.svg" alt="Github Logo"></a>  2023</p>
+        </div>
+    </div>
+</body>
+</html>

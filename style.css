@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Corben:wght@400;700&display=swap');
+
+:root {
+    --background: #feffff;
+    --light-color: #feffff;
+    --dark-color: #343341;
+    --dark-filter: invert(19%) sepia(16%) saturate(559%) hue-rotate(205deg) brightness(99%) contrast(96%);
+    --accent-color: #f34c2f;
+    --accent-filter: filter: invert(100%) sepia(1%) saturate(6905%) hue-rotate(114deg) brightness(99%) contrast(108%);
+    --main-font: 'Corben', serif;
+}
+
+html, body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: var(--main-font);
+}
+
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template: minmax(100px, 15%) 1fr minmax(60px, 5%) / 1fr;
+    /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+.header, .footer {
+    justify-self: center;
+    align-self: center;
+}
+
+.header h1 {
+    color: var(--dark-color);
+    margin: 0;
+    font-size: 1.8em;
+}
+
+.header h1 img {
+    width: 20%;
+}
+
+img {
+    vertical-align: middle;
+}
+
+#new-book-btn {
+    font-family: var(--main-font);
+    color: var(--dark-color);
+    background-color: var(--background);
+    border: 2px solid var(--accent-color);
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 0.5em;
+}
+
+#new-book-btn img {
+    padding: 4px;
+}
+#new-book-btn:hover {
+    cursor: pointer;
+    background: var(--accent-color);
+    color: var(--light-color);
+    /* filter: var(--accent-filter); */
+}
+
+#bookDialog {
+    padding: 1em;
+    border-radius: 1em;
+    transition: 1s;
+}
+
+#bookDialog form h2 {
+    text-align: center;
+}
+
+.form-rows {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: repeat(4, 40px);
+    row-gap: 1em;
+    justify-items: left;
+    margin-bottom: 80px;
+}
+
+.book-status {
+    display: grid;
+    
+    grid-template-columns: 20px auto;
+    grid-template-rows: repeat(3, auto);
+    margin-bottom: 0.8em;
+    column-gap: 12px;
+
+}
+.form-rows label {
+    font-size: 1.2em;
+    padding-right: 10px;
+}
+
+#bookDialog form p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.form-rows input {
+    margin: 0;
+    padding: 0 0 0 0.5em;
+    font-family: var(--main-font);
+    font-size: 1.1em;
+    border-radius: 0.2em;
+}
+
+input:invalid {
+    border: solid var(--accent-color);
+}
+
+input:valid {
+    border: solid var(--dark-color);
+}
+
+#book-title,
+#book-author {
+    width: 300px;
+}
+
+#book-pages {
+    width: 100px;
+}
+
+#book-read {
+    align-self: left;
+}
+
+#status-read,
+#status-in-progress,
+#status-unread {
+    justify-self: right;
+    /* margin-right: 12px; */
+}
+
+form button {
+    border: 0.1em solid var(--dark-color);
+    font-family: var(--main-font);
+    background: var(--background);
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    margin: 0 1em 1em 0;
+}
+
+form button:hover {
+    background-color: var(--accent-color);
+    color: var(--background);
+    transition: 0.3s;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.database {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 8px;
+}
+
+.col-title {
+    font-weight: bold;
+}
