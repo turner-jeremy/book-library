@@ -2,18 +2,18 @@ const bookLibrary = [];
 const newBookForm = document.getElementById("addNewBook");
 const database = document.querySelector('.database');
 const dbHeader = `
-<div class="col-title">Title</div>
-<div class="col-title">Author</div>
-<div class="col-title">Pages</div>
-<div class="col-title">Status</div>
+<div class="col-title center">Title</div>
+<div class="col-title center">Author</div>
+<div class="col-title center">Pages</div>
+<div class="col-title center">Status</div>
 `
 let statusString = ""
 let dbCurrent = ``
 let dbNew = ``
 let newBook = ""
 
-
 const get = element => document.getElementById(element);
+
 
 get("new-book-btn").addEventListener("click", () => {
     get("bookDialog").showModal();
@@ -44,8 +44,14 @@ get("submit-btn").addEventListener("click", (e) => {
     newBookForm.reset();
 
     // Update library HTML
-    updateLibraryHTML(newBook.bookHTML);
+    updateLibraryHTML();
+
+    document.getElementById("book-title").focus();
 });
+
+let iconListener = function() {
+  console.log(this);
+}
 
 function Book(new_title, new_author, new_pages, new_status) {
   this.title = new_title,
@@ -56,18 +62,10 @@ function Book(new_title, new_author, new_pages, new_status) {
     console.log(`${this.title} by ${this.author} has been added to the library!`);
     console.log(`Books currently in library: ${bookLibrary.length}`);
   }
-  this.bookHTML = `
-  <div class="book-title">${this.title}</div>
-  <div class="book-author">${this.author}</div>
-  <div class="book-pages">${this.pages}</div>
-  <div class="book-read">${this.status}</div>
-  `
 }
 
 function convertStatusToString(status) {
-  if (status == "status-in-progress") {
-    statusString = "In Progress"
-    } else if (status == "status-unread") {
+  if (status == "status-unread") {
     statusString = "Unread"
     } else {
       statusString = "Read"
@@ -75,6 +73,65 @@ function convertStatusToString(status) {
   return statusString;
 }
 
-function updateLibraryHTML(newHTMLString) {
-  database.innerHTML = database.innerHTML + newHTMLString
+function updateLibraryHTML() {
+  databaseHTML = dbHeader
+  bookIndex = 0
+  bookLibrary.forEach(book => {
+  let statusIcon = ""
+  let statusClass = ""
+
+    if (book.status == "Read") {
+      statusIcon = "book-check.svg"
+      statusClass = "status-read"
+    } else {
+      statusIcon = "book.svg"
+      statusClass = "status-unread"
+    }
+
+    databaseHTML += `
+    <div class="book-row" id="book-${bookIndex}">
+    <div class="book-title center">${book.title}</div>
+    <div class="book-author center">${book.author}</div>
+    <div class="book-pages center">${book.pages}</div>
+    <div class="book-read center ${statusClass}">${book.status}</div>
+    <img class="book-icon toggle-icon" id="book-${bookIndex}-toggle" width="25px" src="./images/${statusIcon}">
+    <img class="book-icon delete-icon" id="book-${bookIndex}-delete" width="25px" src="./images/book-remove.svg">
+    </div>
+    `
+
+    bookIndex += 1
+  });
+
+  database.innerHTML = databaseHTML;
+}
+
+database.addEventListener('click', function (e) {
+  if (e.target.classList.contains('toggle-icon')) {
+    let idString = e.target.id;
+    let toggleIndex = Number(idString.slice(5, 6));
+    toggleStatus(idString, toggleIndex);
+  } else if (e.target.classList.contains('delete-icon')) {
+    let idString = e.target.id;
+    let deleteIndex = Number(idString.slice(5, 6));
+    deleteBook(deleteIndex);
+  }
+})
+
+function toggleStatus(idString, bookIndex) {
+  if (bookLibrary[bookIndex].status == "Read") {
+    bookLibrary[bookIndex].status = "Unread";
+  } else if (bookLibrary[bookIndex].status == "Unread") {
+    bookLibrary[bookIndex].status = "Read";
+  }
+
+  updateLibraryHTML();
+}
+
+function deleteBook(bookIndex) {
+  if (bookIndex == 0) {
+    bookLibrary.shift(bookIndex);
+  } else {
+  bookLibrary.splice(bookIndex, bookIndex);
+  }
+  updateLibraryHTML();
 }

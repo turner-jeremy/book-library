@@ -27,24 +27,21 @@
                         <div class="book-status">
                             <input type="radio" id="status-read" name="book-status" value="status-read" checked>
                             <label for="status-read">Read</label>
-                            <input type="radio" id="status-in-progress" name="book-status" value="status-in-progress">
-                            <label for="status-in-progress">In Progress</label>
+                            <!-- <input type="radio" id="status-in-progress" name="book-status" value="status-in-progress">
+                            <label for="status-in-progress">In Progress</label> -->
                             <input type="radio" id="status-unread" name="book-status" value="status-unread">
-                            <label for="status-unread">Not Yet Started</label>
+                            <label for="status-unread">Unread</label>
                         </div>
                     </div>
 
-                   
-                    <button type="submit" id="submit-btn">Submit</button>
-                    <button id="cancel-btn" type="button">Close</button>
+                   <div class="buttons">
+                        <button type="submit" id="submit-btn">Submit</button>
+                        <button id="cancel-btn" type="button">Close</button>
+                    </div>
                 </form>
             </dialog>
             <div class="center"><button id="new-book-btn"><img width="24px" src="./images/book-plus.svg" alt="Add new book icon">Add New Book</button></div>
             <div class="database">
-                <div class="col-title">Title</div>
-                <div class="col-title">Author</div>
-                <div class="col-title">Pages</div>
-                <div class="col-title">Status</div>
             </div>
         </div>
         <div class="footer">
